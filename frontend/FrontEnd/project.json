@@ -14,11 +14,11 @@
   },
 
   "commands": {
-    "web": "Microsoft.AspNet.Server.Kestrel --server.urls http://*:5004"
+    "web": "Microsoft.AspNet.Server.Kestrel"
   },
 
   "frameworks": {
-    "dnx451": { }
+    "dnx452": { }
   },
 
   "exclude": [
