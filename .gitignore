@@ -1,2 +1,6 @@
 service/service
 simresults
+**/packages/*
+bin/
+.vs/
+obj/
