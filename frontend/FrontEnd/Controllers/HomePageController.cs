@@ -6,25 +6,25 @@ using Microsoft.AspNet.Mvc;
 namespace FrontEnd
 {
     public class HomePageController : Controller {
-        WebClient _client;
 
-        public HomePageController(){
-            _client = new WebClient();
-        }
-        
-        public ActionResult Index(){
-            var result = _client.DownloadString(getUri());
-            return View("Index", result);
-        }
-        
-        public async Task<ActionResult> IndexAsync(){
+        public ActionResult Index(int delay = 1000){
             
-            var result = await _client.DownloadStringTaskAsync(getUri());
-            return View("Index", result);
+            using(var client = new WebClient()){
+                var result = client.DownloadString(getUri(delay));
+                return View("Index", result);    
+            } 
+        }
+            
+        public async Task<ActionResult> IndexAsync(int delay = 1000){
+            
+            using(var client = new WebClient()){
+                var result = await client.DownloadStringTaskAsync(getUri(delay));
+                return View("Index", result);    
+            }
         }
         
-        private Uri getUri(){
-            return new Uri("http://localhost:8080/search?delay=1000");
+        private Uri getUri(int delay){
+            return new Uri($"http://localhost:8080/search?delay={delay}");
         }
     }    
 }
