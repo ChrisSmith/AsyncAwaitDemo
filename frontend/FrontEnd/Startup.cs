@@ -15,8 +15,9 @@ namespace FrontEnd
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
         {
+#if !DNXCORE50
             System.Net.ServicePointManager.DefaultConnectionLimit = int.MaxValue;
-            
+#endif
             loggerFactory.AddConsole();
             
             // Add the platform handler to the request pipeline.
